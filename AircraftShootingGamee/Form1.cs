@@ -5,22 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
-using NAudio.Wave; // Add this for NAudio
+using NAudio.Wave;
 
 namespace AircraftShootingGamee
 {
     public partial class Form1 : Form
     {
-        // Define NAudio objects for background music
         private WaveOutEvent waveOutEvent;
         private AudioFileReader backgroundMusicReader;
-
-        // Define SoundPlayer objects for sound effects
         private SoundPlayer shootSound;
         private SoundPlayer gameOverSound;
         private SoundPlayer enemyHitSound;
-
-        // Define game elements
         private Timer GameTimer;
         private Timer EnemyTimer;
         private List<PictureBox> enemyList = new List<PictureBox>();
@@ -38,7 +33,6 @@ namespace AircraftShootingGamee
 
         private void InitializeGame()
         {
-            // Initialize game timers
             GameTimer = new Timer();
             GameTimer.Interval = 20;
             GameTimer.Tick += GameTimer_Tick;
@@ -47,16 +41,14 @@ namespace AircraftShootingGamee
             EnemyTimer.Interval = 1000;
             EnemyTimer.Tick += EnemyTimer_Tick;
 
-            // Load high score
             LoadHighScore();
 
-            // Initialize and play background music using NAudio
             try
             {
                 backgroundMusicReader = new AudioFileReader(@"C:\Users\youse\Downloads\415804__sunsai__mushroom-background-music.wav");
                 waveOutEvent = new WaveOutEvent();
                 waveOutEvent.Init(backgroundMusicReader);
-                waveOutEvent.Volume = 0.2f; // Lower volume of background music (0.0 to 1.0 range)
+                waveOutEvent.Volume = 0.2f;
                 waveOutEvent.Play();
             }
             catch (Exception ex)
@@ -64,19 +56,17 @@ namespace AircraftShootingGamee
                 MessageBox.Show("Error loading background music: " + ex.Message);
             }
 
-            // Initialize sound effects using SoundPlayer
             shootSound = new SoundPlayer(@"C:\Users\youse\Downloads\shootSound.wav");
             gameOverSound = new SoundPlayer(@"C:\Users\youse\Downloads\gameOverSound.wav");
             enemyHitSound = new SoundPlayer(@"C:\Users\youse\Downloads\enemyHitSound.wav");
 
-            // Start game timers
             GameTimer.Start();
             EnemyTimer.Start();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            int moveSpeed = 15; // Increase this value to make the player aircraft move faster
+            int moveSpeed = 15;
 
             switch (e.KeyCode)
             {
@@ -123,7 +113,7 @@ namespace AircraftShootingGamee
         {
             PictureBox enemy = new PictureBox
             {
-                Image = Properties.Resources.enemyAircraft,  // Replace with your own image
+                Image = Properties.Resources.enemyAircraft,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 Size = new Size(50, 50),
                 Location = new Point(random.Next(this.ClientSize.Width - 50), 0)
@@ -143,7 +133,6 @@ namespace AircraftShootingGamee
             this.Controls.Add(projectile);
             projectileList.Add(projectile);
 
-            // Play shooting sound
             shootSound.Play();
         }
 
@@ -202,12 +191,8 @@ namespace AircraftShootingGamee
 
         private void GameOver()
         {
-            // Stop the background music
             waveOutEvent.Stop();
-
-            // Play the game over sound
             gameOverSound.Play();
-
             GameTimer.Stop();
             EnemyTimer.Stop();
             lblGameOver.Visible = true;
@@ -243,7 +228,6 @@ namespace AircraftShootingGamee
             lblGameOver.Visible = false;
             btnRestart.Visible = false;
 
-            // Restart the background music
             waveOutEvent.Play();
         }
 
