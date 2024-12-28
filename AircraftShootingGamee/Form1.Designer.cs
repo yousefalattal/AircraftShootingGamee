@@ -1,4 +1,7 @@
-﻿namespace AircraftShootingGamee
+using System;
+using System.Windows.Forms;
+
+namespace AircraftShootingGamee
 {
     partial class Form1
     {
@@ -103,7 +106,7 @@
             // playerAircraft1
             // 
             this.playerAircraft1.Image = global::AircraftShootingGamee.Properties.Resources.playerAircraft;
-            this.playerAircraft1.Location = new System.Drawing.Point(186, 378);
+            this.playerAircraft1.Location = new System.Drawing.Point(186, 497);
             this.playerAircraft1.Name = "playerAircraft1";
             this.playerAircraft1.Size = new System.Drawing.Size(60, 60);
             this.playerAircraft1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -115,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(35)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(415, 460);
+            this.ClientSize = new System.Drawing.Size(415, 569);
             this.Controls.Add(this.enemyAircraft1);
             this.Controls.Add(this.playerAircraft1);
             this.Controls.Add(this.lblGameOver);
@@ -129,6 +132,13 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        
+
+        private void enemyAircraft1_Click(object sender, EventArgs e)
+        {
+            
         }
 
         #endregion
