@@ -194,7 +194,7 @@ namespace AircraftShootingGamee
 
         private void CheckGameOver()
         {
-            if (enemiesHitGroundCount >= 10)
+            if (enemiesHitGroundCount >= 5)
             {
                 GameOver();
             }
